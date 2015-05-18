@@ -1,0 +1,29 @@
+package linroad.queries
+
+import "linroad.meta"
+import "http://www.eclipse.org/emf/2002/Ecore"
+
+pattern carIsOnSegment(car : Car , carId : EString, segment :Segment) {
+	Car.ID(car,carId);
+	Segment.newEReference(segment,car);
+	
+	}
+
+
+
+pattern carGoesEast(car : Car, carId : EString) {
+	Car.Direction(car,::EAST);
+	Car.ID(car, carId);}
+
+
+pattern carIsOnUpRamp(car : Car, carId : EString) {
+	Car.Line(car,::UpRamp);
+	Car.ID(car, carId);}
+	
+pattern carIsOnDownRamp(car : Car, carId : EString) {
+	Car.Line(car,::DownRamp);
+	Car.ID(car, carId);}
+
+pattern carGoesWest(car : Car, carId : EString) {
+	Car.Direction(car,::WEST);
+	Car.ID(car, carId);}

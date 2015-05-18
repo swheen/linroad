@@ -1,0 +1,39 @@
+package linmodel.eventmodel
+import-queries linroad.queries.*
+
+QueryResultChangeEvent adottautoBalra(ide: String, car: linroad.Car){
+	query: carGoesEast(car, ide)
+	resultChangeType: NEW_MATCH_FOUND}
+
+QueryResultChangeEvent adottautoFelhajt(ide: String, car: linroad.Car){
+	query: carIsOnUpRamp(car,ide)
+	resultChangeType: NEW_MATCH_FOUND
+	}
+QueryResultChangeEvent adottautoLehajt(ide: String, car: linroad.Car){
+	query: carIsOnDownRamp(car,ide)
+	resultChangeType: NEW_MATCH_FOUND
+	}
+
+QueryResultChangeEvent adottautoJobbra(ide: String, car: linroad.Car){
+	query: carGoesWest(car, ide)
+	resultChangeType: NEW_MATCH_FOUND}
+
+
+ComplexEvent iranytvaltott(ide: String, sajt: linroad.Car){
+	definition: (		
+		adottautoBalra(ide,sajt) -> 
+		adottautoJobbra(ide,sajt)
+		 OR
+		 adottautoJobbra(ide,sajt)->
+		adottautoBalra(ide,sajt) 
+	)}
+Rule openSC3{
+	events: iranytvaltott(ide, sajt)
+	action{
+		var sajt = activation.atom.observableEventPattern.
+		System.out.println(sajt);
+				
+		System.out.println("Cars walking down the road! up and down to go!");
+	}
+}
+

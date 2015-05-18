@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><?eclipse version="3.0"?><!--
+--><plugin>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <!-- @generated LinearRoad -->
+    <package class="linroad.LinroadPackage" genModel="model/LinearRoad.genmodel" uri="linroad.meta"/>
+  </extension>
+  <extension id="linroad.queries.Queries" point="org.eclipse.incquery.runtime.queryspecification">
+    <group group="org.eclipse.incquery.runtime.extensibility.SingletonExtensionFactory:linroad.queries.Queries" id="linroad.queries.Queries"/>
+  </extension>
+</plugin>
